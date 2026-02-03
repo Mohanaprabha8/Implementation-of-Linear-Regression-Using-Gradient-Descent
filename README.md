@@ -27,23 +27,23 @@ RegisterNumber:  212225040254
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-#Load data
+
 data = pd.read_csv("C:/Users/acer/Downloads/50_Startups.csv")
 x = data["R&D Spend"].values
 y = data["Profit"].values
-#-----Feature scaling -----
+
 x_mean = np.mean(x)
 x_std = np.std(x)
 x = (x - x_mean) / x_std
-#Parameters
+
 w = 0.0
 b = 0.0
 alpha = 0.01
 epochs = 100
 n = len(x)
 
+
 losses = []
-#Gradient descent
 for _ in range(epochs):
     y_hat = w * x + b
     loss = np.mean((y_hat - y) ** 2)
@@ -54,8 +54,7 @@ for _ in range(epochs):
     
     w -= alpha * dw
     b -= alpha * db
-    # Plot
-plt.figure(figsize=(12, 5))
+    plt.figure(figsize=(12, 5))
 
 plt.subplot(1, 2, 1)
 plt.plot(losses)
@@ -65,23 +64,21 @@ plt.title("Loss vs Iterations")
 
 plt.subplot(1, 2, 2)
 plt.scatter(x, y)
-
 x_sorted = np.argsort(x)
-plt.plot(x[x_sorted], (w * x + b)[x_sorted], color='red')
-
+plt.plot(x[x_sorted], (w * x + b)[x_sorted], color = 'red')
 plt.xlabel("R&D Spend (scaled)")
 plt.ylabel("Profit")
 plt.title("Linear Regression Fit")
-
 plt.tight_layout()
 plt.show()
 
-print("Final weight (w):", w)
-print("Final bias (b):", b)
+print("Final weight (w):",w)
+print("Final bias (b):",b)
+ 
 ```
 
 ## Output:
-![alt text](<Screenshot 2026-01-30 130000.png>)
+![alt text](<exp 3 output ml.jpeg>)
 
 
 ## Result:
